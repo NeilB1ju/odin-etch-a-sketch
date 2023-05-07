@@ -26,6 +26,8 @@
     display:flex;
     align-items: center;
     justify-content: center;
+    gap: 100px;
+    padding-top: 20px;
 }
 
 .container{
@@ -38,6 +40,7 @@
 .settings{
     display:flex;
     flex-direction: column;
+    align-items: center;
     gap: 10px;
 }
 
@@ -47,4 +50,9 @@
     width: 200px;
     border: 1px solid black;
     border-radius: 8px;
+}
+
+.color-input{
+    height: 80px;
+    width: 80px;
 }
