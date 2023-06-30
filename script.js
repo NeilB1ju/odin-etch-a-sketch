@@ -3,7 +3,7 @@ let grid=document.querySelector(".container");
 
 function generateGrid(size){
     grid.replaceChildren(); //Removes all previously creasted divs
-    let gridSize=grid.offsetWidth - 1.6;
+    let gridSize=grid.offsetWidth;
     let divSize=(gridSize/size); //Calculates size of the divs that are created
     for(let i=0;i<size*size;i++){
         let div=document.createElement("div");
