@@ -1,15 +1,16 @@
 //Tracks if user is pressing down the mouse or not 
-let mouseDown = false
-document.body.onmousedown = () => {
-    mouseDown = true
-    e.preventDefault();
+let mouseDown = false;
+let grid=document.querySelector(".container"); 
+grid.onmousedown = (e) => {
+    mouseDown = true;
+    e.preventDefault(); 
 }
-document.body.onmouseup = () => (mouseDown = false)
+grid.onmouseup = () => {
+    mouseDown = false;
+}
 
 
 //Creating the grid
-let grid=document.querySelector(".container"); 
-
 function generateGrid(size){
     grid.replaceChildren(); //Removes all previously creasted divs
     let gridSize=grid.offsetWidth;
@@ -53,6 +54,18 @@ function generateGrid(size){
     }
 }
 generateGrid(16); //Initial grid generation
+
+
+//Updating grid size on user input 
+let size=document.getElementById("size");
+let sizeText=document.querySelector(".grid-size-text");
+size.onchange = (e) => {
+    sizeText.textContent=`${e.target.value}x${e.target.value}`;
+    generateGrid(e.target.value);
+}
+size.onmousemove = (e) => { 
+    sizeText.textContent=`${e.target.value}x${e.target.value}`;
+}
 
 
 //Accepting user input for color 
