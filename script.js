@@ -23,30 +23,12 @@ function generateGrid(size){
 
         //Adding event listeners to allow us to change the color of the divs
         div.addEventListener('click', () => {
-            if(tracker==1){
-                div.style.background=color;
-            }
-            if(tracker==2){
-                c=getRandomColor();
-                div.style.background=c;
-            }
-            if(tracker==3){
-                div.style.background="#EDEDED";
-            }
+            setColor(div);
         });
 
         div.addEventListener('mouseover', () => {
             if(mouseDown==true){ //Checks if the user is pressing down the mouse or not
-                if(tracker==1){
-                    div.style.background=color;
-                }
-                if(tracker==2){
-                    c=getRandomColor();
-                    div.style.background=c;
-                }
-                if(tracker==3){
-                    div.style.background="#EDEDED";
-                }
+                setColor(div);
             }
         });
 
@@ -54,6 +36,21 @@ function generateGrid(size){
     }
 }
 generateGrid(16); //Initial grid generation
+
+
+//Function used to set the color of the selected div based on what mode the user chooses
+function setColor(div){
+    if(tracker==1){
+        div.style.background=color;
+    }
+    if(tracker==2){
+        c=getRandomColor();
+        div.style.background=c;
+    }
+    if(tracker==3){
+        div.style.background="#EDEDED";
+    }
+}
 
 
 //Updating grid size on user input 
