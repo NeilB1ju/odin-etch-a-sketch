@@ -1,3 +1,12 @@
+//Tracks if user is pressing down the mouse or not 
+let mouseDown = false
+document.body.onmousedown = () => {
+    mouseDown = true
+    e.preventDefault();
+}
+document.body.onmouseup = () => (mouseDown = false)
+
+
 //Creating the grid
 let grid=document.querySelector(".container"); 
 
@@ -11,8 +20,8 @@ function generateGrid(size){
         div.style.height = `${divSize}px`;
         div.classList.add('grid'); 
 
-        //Adding event listeners to allow us to change the color
-        div.addEventListener('click', (e) => {
+        //Adding event listeners to allow us to change the color of the divs
+        div.addEventListener('click', () => {
             if(tracker==1){
                 div.style.background=color;
             }
@@ -25,21 +34,25 @@ function generateGrid(size){
             }
         });
 
+        div.addEventListener('mouseover', () => {
+            if(mouseDown==true){ //Checks if the user is pressing down the mouse or not
+                if(tracker==1){
+                    div.style.background=color;
+                }
+                if(tracker==2){
+                    c=getRandomColor();
+                    div.style.background=c;
+                }
+                if(tracker==3){
+                    div.style.background="#EDEDED";
+                }
+            }
+        });
+
         grid.appendChild(div);
     }
 }
 generateGrid(16); //Initial grid generation
-
-
-//Updating grid size on user input 
-let sizeText=document.querySelector(".grid-size-text");
-size.onchange = (e) => {
-    sizeText.textContent=`${e.target.value}x${e.target.value}`;
-    generateGrid(e.target.value);
-}
-size.onmousemove = (e) => { 
-    sizeText.textContent=`${e.target.value}x${e.target.value}`;
-}
 
 
 //Accepting user input for color 
@@ -105,7 +118,6 @@ eraserButton.addEventListener('click', () => {
     tracker=3;
     buttonPress(tracker);
 })
-
 
 
 //Functionality for clear grid button
